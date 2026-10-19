@@ -1,0 +1,9 @@
+{
+  "sample_count": 24,
+  "deterministic_samples": true,
+  "browser_errors": [],
+  "layout_issues": [],
+  "reading_warnings": [],
+  "facts": "Source records validated structurally; truth still needs editorial review.",
+  "visual_review": "Contact sheet requires human/agent inspection; not a frame-complete visual audit."
+}

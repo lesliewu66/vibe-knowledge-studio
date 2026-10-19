@@ -1,0 +1,7 @@
+{
+  "playback_advances": true,
+  "pause": true,
+  "seek_to_15s": true,
+  "audio_pauses_on_seek": true,
+  "browser_errors": []
+}
