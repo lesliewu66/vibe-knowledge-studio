@@ -1,0 +1,23 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vibe Studio · 预览</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#080d19;color:#eee;font:15px system-ui}main{max-width:1280px;margin:24px auto;padding:0 24px}canvas{width:100%;display:block;border:1px solid #263246;border-radius:12px}nav{display:flex;gap:16px;align-items:center;padding:20px 0}input{flex:1}button{background:#d9b978;border:0;padding:10px 24px;border-radius:6px;cursor:pointer}#status{color:#a9b6cd;line-height:1.6}body.export main{margin:0;padding:0;max-width:none}body.export canvas{border:0;border-radius:0;width:100%}body.export nav,body.export #status{display:none}
+</style><main><canvas id="film"></canvas><nav><button id="play">播放</button><input id="seek" type="range" min="0" step="0.01" value="0"><output id="clock"></output></nav><p id="status">加载中…</p></main>
+<script src="runtime.js"></script><script src="scenes.js"></script>
+<script>
+let project, playing=false, origin=0, position=0, audio;
+const slider=document.getElementById('seek'), button=document.getElementById('play');
+window.ready=(async()=>{
+ project=await (await fetch('project.json')).json();
+ Vibe.init(project); slider.max=project.duration;
+ if(project.audio?.preview){audio=new Audio(project.audio.preview); audio.preload='auto';}
+ if(new URLSearchParams(location.search).has('export'))document.body.className='export';
+ window.seek=t=>{position=Math.max(0,Math.min(project.duration-0.000001,t));Vibe.render(position);slider.value=position;document.getElementById('clock').textContent=position.toFixed(2)+' / '+project.duration+'s';};
+ seek(0);document.getElementById('status').textContent=project.title+' · '+project.width+'×'+project.height+' · '+project.fps+' fps · 拖动时间轴预览';
+})();
+function stop(){playing=false;button.textContent='播放';if(audio)audio.pause();}
+button.onclick=async()=>{await ready;if(playing){stop();return;}if(position>=project.duration-.05)seek(0);if(audio){audio.currentTime=position;await audio.play();}origin=performance.now()-position*1000;playing=true;button.textContent='暂停';requestAnimationFrame(tick);};
+function tick(now){if(!playing)return;const t=audio&&!audio.paused?audio.currentTime:(now-origin)/1000;if(t>=project.duration){seek(project.duration);stop();return;}seek(t);requestAnimationFrame(tick);}
+slider.oninput=()=>{stop();seek(Number(slider.value));};
+</script></html>

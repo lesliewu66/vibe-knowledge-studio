@@ -1,0 +1,188 @@
+{
+  "title": "一帧之间｜代码怎样变成视频",
+  "description": "一颗光球、一条时间线，展示代码动画怎样经过采样、逐帧绘制与编码成为视频。",
+  "series": "VIBE STUDIO · 原创工作流演示",
+  "duration": 36,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "cover_time": 2.6,
+  "audio": {
+    "bpm": 80,
+    "beat_origin": 0,
+    "origin": "Original procedural arpeggio; synthesized locally",
+    "preview": "audio.wav"
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "title": "MDN · Canvas Basic animations",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_animations",
+      "checked_at": "2026-10-19"
+    },
+    {
+      "id": "S2",
+      "title": "MDN · requestAnimationFrame",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame",
+      "checked_at": "2026-10-19"
+    },
+    {
+      "id": "S3",
+      "title": "FFmpeg documentation",
+      "url": "https://ffmpeg.org/ffmpeg.html",
+      "checked_at": "2026-10-19"
+    }
+  ],
+  "claims": [
+    {
+      "id": "C1",
+      "text": "Canvas动画可通过更新画布内容生成一系列画面。",
+      "sources": [
+        "S1"
+      ],
+      "status": "verified",
+      "evidence": "MDN Basic animations 描述清除、绘制和循环更新画布的步骤；本演示用确定性时间函数离线求值。"
+    },
+    {
+      "id": "C2",
+      "text": "动画位置可以由时间计算，而不是单纯按回调次数递增。",
+      "sources": [
+        "S2"
+      ],
+      "status": "verified",
+      "evidence": "MDN建议根据时间戳计算动画进度，并给出 elapsed × speed 的位置示例。"
+    },
+    {
+      "id": "C3",
+      "text": "逐帧图像可由FFmpeg编码为视频；30帧每秒乘10秒为300帧。",
+      "sources": [
+        "S3"
+      ],
+      "status": "verified",
+      "evidence": "FFmpeg文档说明输入帧率、媒体输入和编码过程；帧数为设定的帧率与时长之积。"
+    }
+  ],
+  "assets": [
+    {
+      "name": "All shapes, layout and animation",
+      "origin": "Original JavaScript in scenes.js and runtime.js",
+      "license": "MIT (project code)"
+    },
+    {
+      "name": "Procedural soundtrack",
+      "origin": "Original synth function in studio.py; not a copied trending song",
+      "license": "MIT (project-generated asset)"
+    },
+    {
+      "name": "Chinese glyphs",
+      "origin": "System PingFang SC at render time",
+      "license": "System font; font file not redistributed"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "s1",
+      "start": 0,
+      "end": 6,
+      "title": "你看到的运动，从哪里来？",
+      "visual": "hook",
+      "description": "一颗光球沿弧线移动，身后留下位置轨迹。",
+      "note": "示意动画 · 非物理实验"
+    },
+    {
+      "id": "s2",
+      "start": 6,
+      "end": 12,
+      "title": "先把运动，拆成静帧",
+      "visual": "frames",
+      "description": "六张静帧并排，小球位置不同，亮框逐个选中。",
+      "note": "示意动画 · 非物理实验"
+    },
+    {
+      "id": "s3",
+      "start": 12,
+      "end": 18,
+      "title": "同一条路径，可以有不同帧率",
+      "visual": "compare",
+      "description": "上下两条轨道对比每秒4次与24次位置更新。",
+      "note": "示意动画 · 非物理实验"
+    },
+    {
+      "id": "s4",
+      "start": 18,
+      "end": 24,
+      "title": "让时间决定位置",
+      "visual": "clock",
+      "description": "时间计数与小球位置同步变化。",
+      "note": "示意动画 · 非物理实验"
+    },
+    {
+      "id": "s5",
+      "start": 24,
+      "end": 30,
+      "title": "把画面，按顺序编码",
+      "visual": "pipeline",
+      "description": "静帧按顺序汇入视频，并展示帧数计算。",
+      "note": "示意动画 · 非物理实验"
+    },
+    {
+      "id": "s6",
+      "start": 30,
+      "end": 36,
+      "title": "从一帧，走向一个故事",
+      "visual": "end",
+      "description": "完整轨迹与连续运动，回收开头视觉对象。",
+      "note": "示意动画 · 非物理实验"
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 0,
+      "end": 6,
+      "text": "代码先画出一帧，再画下一帧。",
+      "kind": "fact",
+      "claims": [
+        "C1"
+      ]
+    },
+    {
+      "start": 6,
+      "end": 12,
+      "text": "这些画面里的小球，位置各不相同。",
+      "kind": "editorial",
+      "claims": []
+    },
+    {
+      "start": 12,
+      "end": 18,
+      "text": "看同样的运动：每秒更新4次，与24次。",
+      "kind": "editorial",
+      "claims": []
+    },
+    {
+      "start": 18,
+      "end": 24,
+      "text": "给定时间，就能算出这一帧的位置。",
+      "kind": "fact",
+      "claims": [
+        "C2"
+      ]
+    },
+    {
+      "start": 24,
+      "end": 30,
+      "text": "每秒30帧，10秒就需要300帧。",
+      "kind": "fact",
+      "claims": [
+        "C3"
+      ]
+    },
+    {
+      "start": 30,
+      "end": 36,
+      "text": "动画的起点，是每一帧都能被画出来。",
+      "kind": "editorial",
+      "claims": []
+    }
+  ]
+}
