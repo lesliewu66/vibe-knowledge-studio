@@ -1,0 +1,29 @@
+{
+  "file": "final.mp4",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "frames_requested": 1080,
+  "frames_decoded": 1080,
+  "start": 0,
+  "duration_requested": 36.0,
+  "encoded_metadata": {
+    "ffmpeg_version": "7.1 built with Apple clang version 13.1.6 (clang-1316.0.21.2.5)",
+    "codec": "h264",
+    "pix_fmt": "yuv420p(progressive)",
+    "audio_codec": "aac",
+    "fps": 30.0,
+    "source_size": [
+      1920,
+      1080
+    ],
+    "size": [
+      1920,
+      1080
+    ],
+    "rotate": 0,
+    "duration": 36.0
+  },
+  "decode_passed": true,
+  "sha256": "31ec4daba08d0d8fab317d3c6c45826a419e704f3671af6bba90d6dc82075cf6"
+}
