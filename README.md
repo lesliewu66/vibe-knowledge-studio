@@ -2,6 +2,8 @@
 
 本地知识动画工作流：联网Agent研究与创作 → 来源/字幕/分镜 → Canvas动画 → 预览与抽帧QA → 原创基础配乐或导入音乐 → MP4。
 
+选题、文案和分镜的方法依据、实际改进及限制见 [编辑方法调研](EDITORIAL_RESEARCH.md)；完整前期练习见 [生日问题](editorial-examples/birthday/brief.md)。新流程已写入项目Skill，尚未完成真实观众理解测试。
+
 ## 直接看成片
 
 演示位于 `projects/frame-story/renders/final.mp4`：原创36秒《一帧之间》，1920×1080、30fps、无旁白。使用原创程序音轨，没有复用网上爆款的文案或BGM。
